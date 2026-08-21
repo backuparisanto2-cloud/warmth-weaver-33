@@ -50,80 +50,87 @@ function umum(
   return { id, label, type: "umum", locationMatch, x, y, w, h };
 }
 
-/** Baris atas & bawah pada denah lantai (persen terhadap gambar 1024x1024). */
-const TOP_Y = 23.5;
-const TOP_H = 15.5;
-const BOTTOM_Y = 48.5;
-const BOTTOM_H = 15.5;
+/*
+ * Koordinat di bawah diukur langsung dari denah arsitektur asli (skala 1:80).
+ * Semua nilai dalam persen terhadap ukuran gambar sumber.
+ * Denah lantai: 1024x1024. Rooftop: 1152x928.
+ * Urutan nomor kamar: baris atas kiri -> kanan, lalu baris bawah kiri -> kanan.
+ */
 
 const lantai1Hotspots: Hotspot[] = [
-  kamar("l1-001", "001", 14.2, 24, 11.4, 14),
-  kamar("l1-002", "002", 26.4, TOP_Y + 2, 11.4, TOP_H),
-  kamar("l1-003", "003", 38.2, TOP_Y + 2, 11.4, TOP_H),
-  kamar("l1-004", "004", 50, TOP_Y + 2, 11.4, TOP_H),
-  kamar("l1-005", "005", 74.5, TOP_Y + 2, 12, TOP_H),
-  kamar("l1-006", "006", 14.2, 55, 11.4, 10),
-  kamar("l1-007", "007", 26.4, BOTTOM_Y, 11.4, BOTTOM_H),
-  kamar("l1-008", "008", 38.2, BOTTOM_Y, 11.4, BOTTOM_H),
-  kamar("l1-009", "009", 50, BOTTOM_Y, 11.4, BOTTOM_H),
-  kamar("l1-010", "010", 61.8, BOTTOM_Y, 11.4, BOTTOM_H),
-  umum("l1-lobby", "Lobby", ["lobby", "depan", "resepsionis"], 74.5, 47, 12, 17),
-  umum("l1-selasar", "Selasar Lantai 1", ["selasar", "koridor", "lantai 1"], 26.4, 41.5, 59, 5.5),
-  umum("l1-dapur", "Dapur / KMD Lantai 1", ["dapur", "kmd", "lantai 1"], 14.2, 41.5, 10, 12),
-  umum("l1-tangga", "Tangga Lantai 1", ["tangga", "lantai 1"], 66, 24, 9, 18),
+  // baris atas (grid kolom: 14.5 / 26.1 / 37.7 / 49.4 / 61.0 / 72.6 / 84.6)
+  kamar("l1-001", "001", 14.6, 25.5, 11.4, 9.6),
+  kamar("l1-002", "002", 26.4, 28.2, 11.2, 12.6),
+  kamar("l1-003", "003", 38.0, 28.2, 11.2, 12.6),
+  kamar("l1-004", "004", 49.7, 28.2, 11.2, 12.6),
+  kamar("l1-005", "005", 72.9, 28.2, 11.4, 12.6),
+  // baris bawah
+  kamar("l1-006", "006", 14.6, 51.2, 11.4, 14.2),
+  kamar("l1-007", "007", 26.4, 48.9, 11.2, 12.4),
+  kamar("l1-008", "008", 38.0, 48.9, 11.2, 12.4),
+  kamar("l1-009", "009", 49.7, 48.9, 11.2, 12.4),
+  kamar("l1-010", "010", 61.3, 48.9, 11.2, 12.4),
+  umum("l1-lobby", "Lobby", ["lobby", "depan", "resepsionis"], 72.9, 48.9, 12.4, 15.5),
+  umum("l1-selasar", "Selasar Lantai 1", ["selasar", "koridor", "lantai 1"], 26.4, 41.2, 58.0, 7.5),
+  umum("l1-dapur", "Dapur / KMD Lantai 1", ["dapur", "kmd", "dapur bersama", "lantai 1"], 14.6, 35.3, 11.4, 15.7),
+  umum("l1-tangga", "Tangga Lantai 1", ["tangga", "lantai 1"], 65.5, 26.0, 7.0, 15.0),
 ];
 
 const lantai2Hotspots: Hotspot[] = [
-  kamar("l2-011", "011", 14.2, 24, 11.4, 14),
-  kamar("l2-012", "012", 26.4, TOP_Y + 2, 11.4, TOP_H),
-  kamar("l2-013", "013", 38.2, TOP_Y + 2, 11.4, TOP_H),
-  kamar("l2-014", "014", 50, TOP_Y + 2, 11.4, TOP_H),
-  kamar("l2-015", "015", 74.5, TOP_Y + 2, 12, TOP_H),
-  kamar("l2-016", "016", 14.2, 55, 11.4, 10),
-  kamar("l2-017", "017", 26.4, BOTTOM_Y, 11.4, BOTTOM_H),
-  kamar("l2-018", "018", 38.2, BOTTOM_Y, 11.4, BOTTOM_H),
-  kamar("l2-019", "019", 50, BOTTOM_Y, 11.4, BOTTOM_H),
-  kamar("l2-020", "020", 61.8, BOTTOM_Y, 11.4, BOTTOM_H),
-  kamar("l2-021", "021", 74.5, BOTTOM_Y, 12, BOTTOM_H),
-  umum("l2-selasar", "Selasar Lantai 2", ["selasar", "koridor", "lantai 2"], 26.4, 41.5, 55, 5.5),
-  umum("l2-balkon", "Balkon Lantai 2", ["balkon", "lantai 2"], 81, 41.5, 6.5, 5.5),
-  umum("l2-dapur", "Dapur / KMD Lantai 2", ["dapur", "kmd", "lantai 2"], 14.2, 41.5, 10, 12),
-  umum("l2-tangga", "Tangga Lantai 2", ["tangga", "lantai 2"], 62.5, 24, 10, 16),
+  // baris atas (grid kolom: 11.8 / 24.4 / 36.9 / 49.5 / 62.1 / 74.6 / 87.2)
+  kamar("l2-011", "011", 12.0, 23.0, 12.2, 9.2),
+  kamar("l2-012", "012", 24.7, 25.6, 12.0, 13.7),
+  kamar("l2-013", "013", 37.2, 25.6, 12.0, 13.7),
+  kamar("l2-014", "014", 49.8, 25.6, 12.0, 13.7),
+  kamar("l2-015", "015", 74.9, 25.6, 12.1, 13.7),
+  // baris bawah
+  kamar("l2-016", "016", 12.0, 52.0, 12.2, 13.8),
+  kamar("l2-017", "017", 24.7, 48.0, 12.0, 12.8),
+  kamar("l2-018", "018", 37.2, 48.0, 12.0, 12.8),
+  kamar("l2-019", "019", 49.8, 48.0, 12.0, 12.8),
+  kamar("l2-020", "020", 62.4, 48.0, 12.0, 12.8),
+  kamar("l2-021", "021", 74.9, 48.0, 12.1, 12.8),
+  umum("l2-selasar", "Selasar Lantai 2", ["selasar", "koridor", "lantai 2"], 24.7, 39.7, 56.5, 7.9),
+  umum("l2-balkon", "Balkon Lantai 2", ["balkon", "lantai 2"], 81.4, 39.7, 5.8, 7.9),
+  umum("l2-dapur", "Dapur / KMD Lantai 2", ["dapur", "kmd", "dapur bersama", "lantai 2"], 12.0, 32.4, 12.2, 19.4),
+  umum("l2-tangga", "Tangga Lantai 2", ["tangga", "lantai 2"], 62.4, 23.0, 12.0, 16.3),
 ];
 
 const lantai3Hotspots: Hotspot[] = [
-  kamar("l3-022", "022", 14.2, 24, 11.4, 14),
-  kamar("l3-023", "023", 26.4, TOP_Y + 2, 11.4, TOP_H),
-  kamar("l3-024", "024", 38.2, TOP_Y + 2, 11.4, TOP_H),
-  kamar("l3-025", "025", 50, TOP_Y + 2, 11.4, TOP_H),
-  kamar("l3-026", "026", 74.5, TOP_Y + 2, 12, TOP_H),
-  kamar("l3-027", "027", 14.2, 55, 11.4, 10),
-  kamar("l3-028", "028", 26.4, BOTTOM_Y, 11.4, BOTTOM_H),
-  kamar("l3-029", "029", 38.2, BOTTOM_Y, 11.4, BOTTOM_H),
-  kamar("l3-030", "030", 50, BOTTOM_Y, 11.4, BOTTOM_H),
-  kamar("l3-031", "031", 74.5, BOTTOM_Y, 12, BOTTOM_H),
-  umum("l3-lobby", "Lobby Lantai 3", ["lobby", "lantai 3"], 61.8, BOTTOM_Y, 11.4, BOTTOM_H),
-  umum("l3-selasar", "Selasar Lantai 3", ["selasar", "koridor", "lantai 3"], 26.4, 41.5, 55, 5.5),
-  umum("l3-balkon", "Balkon Lantai 3", ["balkon", "lantai 3"], 81, 41.5, 6.5, 5.5),
-  umum("l3-dapur", "Dapur / KMD Lantai 3", ["dapur", "kmd", "lantai 3"], 14.2, 41.5, 10, 12),
-  umum("l3-tangga", "Tangga Lantai 3", ["tangga", "lantai 3"], 62.5, 24, 10, 16),
+  // baris atas (grid kolom: 14.2 / 26.3 / 38.4 / 50.4 / 62.5 / 74.7 / 86.8)
+  kamar("l3-022", "022", 14.4, 23.8, 11.8, 9.4),
+  kamar("l3-023", "023", 26.6, 26.5, 11.6, 13.2),
+  kamar("l3-024", "024", 38.6, 26.5, 11.6, 13.2),
+  kamar("l3-025", "025", 50.6, 26.5, 11.6, 13.2),
+  kamar("l3-026", "026", 75.0, 26.5, 11.6, 13.2),
+  // baris bawah
+  kamar("l3-027", "027", 14.4, 52.3, 11.8, 13.4),
+  kamar("l3-028", "028", 26.6, 48.3, 11.6, 12.6),
+  kamar("l3-029", "029", 38.6, 48.3, 11.6, 12.6),
+  kamar("l3-030", "030", 50.6, 48.3, 11.6, 12.6),
+  kamar("l3-031", "031", 75.0, 48.3, 11.6, 12.6),
+  umum("l3-lobby", "Lobby Lantai 3", ["lobby", "lantai 3"], 62.7, 48.3, 11.8, 12.6),
+  umum("l3-selasar", "Selasar Lantai 3", ["selasar", "koridor", "lantai 3"], 26.6, 40.1, 54.4, 8.0),
+  umum("l3-balkon", "Balkon Lantai 3", ["balkon", "lantai 3"], 81.2, 40.1, 5.6, 8.0),
+  umum("l3-dapur", "Dapur / KMD Lantai 3", ["dapur", "kmd", "dapur bersama", "lantai 3"], 14.4, 33.0, 11.8, 19.2),
+  umum("l3-tangga", "Tangga Lantai 3", ["tangga", "lantai 3"], 62.7, 23.8, 12.0, 16.0),
 ];
 
-/** Rooftop memakai gambar 1160x933, jadi persentasenya berbeda. */
+/** Rooftop memakai gambar 1152x928, jadi persentasenya berbeda. */
 const rooftopHotspots: Hotspot[] = [
-  umum("rt-dak-1", "Dak Atap Barat", ["dak", "atap", "rooftop"], 17.8, 21.5, 11, 21),
-  umum("rt-atap-1", "Atap Kamar Utara", ["atap", "rooftop"], 29, 21.5, 33, 21),
-  umum("rt-atap-2", "Atap Kamar Selatan", ["atap", "rooftop"], 17.8, 46.5, 44.2, 20),
-  umum("rt-dak-2", "Dak Atap Tengah", ["dak", "atap", "rooftop"], 43, 42.5, 19, 4),
-  umum("rt-tangga", "Tangga / Turun", ["tangga", "rooftop"], 62.5, 22, 10, 19),
-  umum("rt-rooftop", "Rooftop Tengah", ["rooftop", "santai"], 62.5, 41.5, 10, 8),
-  umum("rt-cuci", "Cuci Jemur", ["cuci", "jemur", "rooftop"], 62.5, 50, 10, 15),
-  umum("rt-rooftop-timur", "Rooftop Timur", ["rooftop", "taman", "santai"], 73, 21.5, 11.5, 44),
+  umum("rt-dak-1", "Dak Atap Barat", ["dak", "atap", "rooftop"], 18.4, 22.4, 6.2, 19.0),
+  umum("rt-atap-1", "Atap Kamar Utara", ["atap", "genteng", "rooftop"], 24.8, 22.0, 35.6, 19.4),
+  umum("rt-dak-2", "Dak Atap Tengah", ["dak", "atap", "talang", "rooftop"], 18.1, 41.6, 42.4, 5.2),
+  umum("rt-atap-2", "Atap Kamar Selatan", ["atap", "genteng", "rooftop"], 18.1, 46.9, 42.4, 20.4),
+  umum("rt-tangga", "Tangga / Turun", ["tangga", "turun", "rooftop"], 61.0, 22.0, 11.2, 19.4),
+  umum("rt-rooftop", "Rooftop Tengah", ["rooftop", "santai"], 61.0, 41.6, 11.2, 6.6),
+  umum("rt-cuci", "Cuci Jemur", ["cuci", "jemur", "rooftop"], 61.0, 48.3, 11.2, 19.0),
+  umum("rt-rooftop-timur", "Rooftop Timur", ["rooftop", "taman", "santai"], 72.4, 22.0, 11.4, 45.3),
 ];
 
 /** Gambar lantai persegi: denah hanya mengisi bagian tengah. */
-const FLOOR_CROP: CropBox = { x: 9.5, y: 21, w: 81, h: 47 };
-const ROOFTOP_CROP: CropBox = { x: 14, y: 18, w: 74, h: 51 };
+const FLOOR_CROP: CropBox = { x: 9.5, y: 20.0, w: 83, h: 48 };
+const ROOFTOP_CROP: CropBox = { x: 16, y: 19.5, w: 70, h: 50 };
 
 export const FLOOR_PLANS: FloorPlan[] = [
   { key: "1", label: "Lantai 1", short: "L1", image: lantai1.url, aspect: 1, crop: FLOOR_CROP, hotspots: lantai1Hotspots },
@@ -134,11 +141,12 @@ export const FLOOR_PLANS: FloorPlan[] = [
     label: "Rooftop",
     short: "RT",
     image: rooftop.url,
-    aspect: 933 / 1160,
+    aspect: 928 / 1152,
     crop: ROOFTOP_CROP,
     hotspots: rooftopHotspots,
   },
 ];
+
 
 /** Ubah koordinat hotspot (persen gambar) menjadi persen terhadap area crop. */
 export function cropRect(crop: CropBox, hotspot: Hotspot) {

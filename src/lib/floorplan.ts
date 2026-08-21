@@ -118,14 +118,15 @@ const lantai3Hotspots: Hotspot[] = [
 
 /** Rooftop memakai gambar 1152x928, jadi persentasenya berbeda. */
 const rooftopHotspots: Hotspot[] = [
-  umum("rt-dak-1", "Dak Atap Barat", ["dak", "atap", "rooftop"], 18.4, 22.4, 6.2, 19.0),
-  umum("rt-atap-1", "Atap Kamar Utara", ["atap", "genteng", "rooftop"], 24.8, 22.0, 35.6, 19.4),
-  umum("rt-dak-2", "Dak Atap Tengah", ["dak", "atap", "talang", "rooftop"], 18.1, 41.6, 42.4, 5.2),
-  umum("rt-atap-2", "Atap Kamar Selatan", ["atap", "genteng", "rooftop"], 18.1, 46.9, 42.4, 20.4),
-  umum("rt-tangga", "Tangga / Turun", ["tangga", "turun", "rooftop"], 61.0, 22.0, 11.2, 19.4),
-  umum("rt-rooftop", "Rooftop Tengah", ["rooftop", "santai"], 61.0, 41.6, 11.2, 6.6),
-  umum("rt-cuci", "Cuci Jemur", ["cuci", "jemur", "rooftop"], 61.0, 48.3, 11.2, 19.0),
-  umum("rt-rooftop-timur", "Rooftop Timur", ["rooftop", "taman", "santai"], 72.4, 22.0, 11.4, 45.3),
+  umum("rt-dak-1", "Dak Atap Barat", ["dak", "atap", "rooftop"], 18.1, 22.0, 10.5, 19.4),
+  umum("rt-atap-1", "Atap Kamar Utara", ["atap", "genteng", "rooftop"], 28.8, 22.0, 32.3, 19.4),
+  umum("rt-dak-2", "Dak Atap Tengah", ["dak", "atap", "talang", "rooftop"], 18.1, 42.1, 43.0, 5.6),
+  umum("rt-atap-2", "Atap Kamar Selatan", ["atap", "genteng", "rooftop"], 18.1, 48.4, 43.0, 18.8),
+  umum("rt-tangga", "Tangga / Turun", ["tangga", "turun", "rooftop"], 62.0, 22.0, 10.4, 19.4),
+  umum("rt-rooftop", "Rooftop Tengah", ["rooftop", "santai"], 62.0, 42.1, 10.4, 6.3),
+  umum("rt-cuci", "Cuci Jemur", ["cuci", "jemur", "rooftop"], 62.0, 49.0, 10.4, 18.2),
+  umum("rt-rooftop-timur", "Rooftop Timur", ["rooftop", "taman", "santai"], 73.0, 22.0, 10.8, 45.2),
+
 ];
 
 /** Gambar lantai persegi: denah hanya mengisi bagian tengah. */

@@ -155,9 +155,11 @@ export function FloorPlanMap({
               draggable={false}
               style={{
                 width: `${(100 / crop.w) * 100}%`,
+                maxWidth: "none",
                 left: `${-(crop.x / crop.w) * 100}%`,
                 top: `${-(crop.y / crop.h) * 100}%`,
               }}
+
             />
             {plan.hotspots.map((hotspot) => {
               const status = statusFor(hotspot);
